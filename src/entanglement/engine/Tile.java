@@ -12,6 +12,7 @@ public class Tile {
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
 		pathes = new Path[Config.inst().openingsPerSide() * 2];
+		updatePathes();
 	}
 	
 	public int[] getTileConf() {
@@ -20,6 +21,17 @@ public class Tile {
 
 	public void setTileConf(int[] tileConf) {
 		this.tileConf = tileConf;
+	}
+	
+	private void updatePathes(){
+		int currPath = 0;
+		
+		for (int i = 0;i < tileConf.length;i++)
+			if (tileConf[i] > i)
+			{
+				pathes[currPath] = new Path(i,tileConf[i]);
+				currPath++;
+			}
 	}
 	
 	public void rotateClockWise(){
@@ -33,6 +45,7 @@ public class Tile {
 		}
 		
 		this.tileConf = tmpConf;
+		updatePathes();
 	}
 	
 	public void rotateAntiClockWise() {
@@ -45,5 +58,6 @@ public class Tile {
 		}
 		
 		this.tileConf = tmpConf;
+		updatePathes();
 	}
 }
