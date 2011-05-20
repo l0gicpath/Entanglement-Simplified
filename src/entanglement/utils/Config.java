@@ -3,11 +3,21 @@ package entanglement.utils;
 import java.io.*;
 
 public class Config {
-
-	private static String[] confLines;
-	private static int[][] tilesConf;
 	
-	public static int load(Reader fileReader) {
+	
+	public static void debug(String message) {
+		if(DEBUG)
+			System.out.println(message);
+	}
+	
+	public static Config getInstance() {
+		if(instance == null)
+			instance = new Config();
+		return instance;
+	}
+	
+	
+	public int load(Reader fileReader) {
 		String oContent = ""; 
 		try 
 		{
@@ -26,7 +36,7 @@ public class Config {
 		return 1;
 	}
 	
-	private static void loadTilesConf(){
+	private void loadTilesConf(){
 		int count = tileTypesCount();
 		String[] tileConf;
 		for(int i = 0;i < count;i++)
@@ -38,35 +48,42 @@ public class Config {
 		}
 	}
 	
-	public static int numberOfSides(){
+	public int numberOfSides(){
 		return Integer.parseInt(confLines[0]);
 	}
 	
-	public static int openingsPerSide(){
+	public int openingsPerSide(){
 		return Integer.parseInt(confLines[1]);
 	}
 	
-	public static int tileTypesCount(){
+	public int tileTypesCount(){
 		return Integer.parseInt(confLines[2]);
 	}
 	
-	public static int[] tileConf(int conf){
+	public int[] tileConf(int conf){
 		return tilesConf[conf];
 	}
 	
-	public static int boardWidth(){
+	public int boardWidth(){
 		return Integer.parseInt(confLines[3 + tileTypesCount()]);
 	}
 	
-	public static int boardHeight(){
+	public int boardHeight(){
 		return Integer.parseInt(confLines[4 + tileTypesCount()]);
 	}
 	
-	public static int startLocation(){
+	public int startLocation(){
 		return Integer.parseInt(confLines[5 + tileTypesCount()]);
 	}
 	
-	public static int playersCount(){
+	public int playersCount(){
 		return Integer.parseInt(confLines[6 + tileTypesCount()]);
 	}
+	
+	
+	public final static boolean DEBUG = true;
+	
+	private String[] confLines 		= null;
+	private int[][] tilesConf 		= null;
+	private static Config instance 	= null;
 }
