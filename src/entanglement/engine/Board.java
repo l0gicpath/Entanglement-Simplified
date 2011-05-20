@@ -49,7 +49,8 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean rotateTileClockwise() {
-		return false;
+		currentTile.rotateClockWise();
+		return true;
 	}
 
 	@Override
