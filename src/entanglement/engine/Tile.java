@@ -34,4 +34,14 @@ public class Tile {
 		
 		this.tileConf = tmpConf;
 	}
+	
+	public void rotateAntiClockWise() {
+		int[] tmpConf = new int[tileConf.length];
+		for (int i = tileConf.length; i > 0; i--) {
+			if (i < tileConf.length - Config.inst().openingsPerSide())
+				tmpConf[i - Config.inst().openingsPerSide()] = tileConf[i];
+			else
+				tmpConf[i + tileConf.length - 2] = tileConf[i];
+		}
+	}
 }
