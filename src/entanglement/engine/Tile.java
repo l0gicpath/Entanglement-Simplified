@@ -3,7 +3,9 @@ package entanglement.engine;
 public class Tile {
 	
 	private int[] tileConf;
-
+	
+	public Tile(){}
+	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
 	}
