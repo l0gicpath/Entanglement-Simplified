@@ -56,6 +56,8 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean switchTile(int tileType) {
+		if(tileType < 0 || tileType > Config.inst().tileTypesCount()-1)
+			return false;
 		currentTile.setTileConf(Config.inst().tileConf(tileType));
 		return true;
 	}
