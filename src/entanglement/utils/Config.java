@@ -16,6 +16,7 @@ public class Config {
 		return instance;
 	}
 	
+	
 	// should validate the configuration file
 	public boolean load(Reader fileReader) {
 		String oContent = ""; 
@@ -80,6 +81,8 @@ public class Config {
 		return Integer.parseInt(confLines[6 + tileTypesCount()]);
 	}
 	
+	
+	private Config() {}
 	
 	public final static boolean DEBUG = true;
 	
