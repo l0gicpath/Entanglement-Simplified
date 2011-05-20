@@ -26,12 +26,12 @@ public class Tile {
 		int[] tmpConf = new int[tileConf.length];
 		for (int i = 0;i < tileConf.length;i++)
 		{
-			if (i < tileConf.length - 2)
-				tmpConf[i + Config.inst().openingsPerSide] = tileConf[i];
+			if (i < tileConf.length - Config.inst().openingsPerSide())
+				tmpConf[i + Config.inst().openingsPerSide()] = tileConf[i];
 			else
-				tmpConf[i - tileConf.length - 2] = tileConf[i];
+				tmpConf[i - tileConf.length - Config.inst().openingsPerSide()] = tileConf[i];
 		}
 		
-		tileConf = tmpConf;
+		this.tileConf = tmpConf;
 	}
 }
