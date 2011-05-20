@@ -2,6 +2,8 @@ package entanglement.engine;
 
 import java.io.Reader;
 
+import entanglement.utils.Config;
+
 
 public class Board implements BoardInterface{
 	
@@ -9,7 +11,9 @@ public class Board implements BoardInterface{
 	Tile currentTile;
 	Player currentPlayer;
 	
-	public Board(Reader reader) {}
+	public Board(Reader reader) {
+		if(Config.getInstance().load(reader));
+	}
 	
 	@Override
 	public boolean fixTile() {
