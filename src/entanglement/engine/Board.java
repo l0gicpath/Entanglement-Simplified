@@ -3,6 +3,8 @@ package entanglement.engine;
 public class Board implements BoardInterface{
 	
 	Tile tiles[];
+	Tile currentTile;
+	Player currentPlayer;
 	
 	@Override
 	public boolean fixTile() {
