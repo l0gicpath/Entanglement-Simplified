@@ -6,9 +6,9 @@ public class Config {
 	
 	public final static boolean DEBUG = true;
 	
-	private String[] confLines 		= null;
-	private int[][] tilesConf 		= null;
-	private static Config instance 	= null;
+	private String[] confLines;
+	private int[][] tilesConf;
+	private static Config instance;
 	
 	public static void debug(String message) {
 		if(DEBUG)
@@ -37,13 +37,14 @@ public class Config {
 		{
 			return false;
 		}
-		confLines = oContent.substring(0, oContent.length()-2).split(":");
+		confLines = oContent.substring(0, oContent.length()-1).split(":");
 		loadTilesConf();
 		return true;
 	}
 	
 	private void loadTilesConf(){
 		int count = tileTypesCount();
+		tilesConf = new int[tileTypesCount()][8];
 		String[] tileConf;
 		for(int i = 0;i < count;i++)
 		{
