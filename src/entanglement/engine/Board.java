@@ -1,18 +1,30 @@
 package entanglement.engine;
 
 import java.io.Reader;
+import java.util.Random;
 
 import entanglement.utils.Config;
 
-
 public class Board implements BoardInterface{
 	
-	Tile tiles[];
+	Tile[] tiles;
 	Tile currentTile;
+	Player[] players;
 	Player currentPlayer;
+	int currentLocation;
 	
 	public Board(Reader reader) {
-		if(Config.getInstance().load(reader));
+		Config.inst().load(reader);
+		
+		tiles = new Tile[Config.inst().boardWidth() * Config.inst().boardHeight()];
+		currentTile = new Tile(Config.inst().tileConf((new Random()).nextInt(Config.inst().tileTypesCount())));
+		
+		players = new Player[Config.inst().playersCount()];
+		for (int i = 0;i < Config.inst().playersCount();i++)
+			players[i] = new Player(i);
+		currentPlayer = players[0];
+		
+		currentLocation = Config.inst().startLocation() - Config.inst().boardWidth();
 	}
 	
 	@Override
@@ -42,8 +54,7 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean switchTile(int tileType) {
-		return false;
+		currentTile.setTileConf(Config.inst().tileConf(tileType));
+		return true;
 	}
-	
-	
 }

@@ -4,13 +4,18 @@ import java.io.*;
 
 public class Config {
 	
+	public final static boolean DEBUG = true;
+	
+	private String[] confLines 		= null;
+	private int[][] tilesConf 		= null;
+	private static Config instance 	= null;
 	
 	public static void debug(String message) {
 		if(DEBUG)
 			System.out.println(message);
 	}
 	
-	public static Config getInstance() {
+	public static Config inst() {
 		if(instance == null)
 			instance = new Config();
 		return instance;
@@ -81,12 +86,5 @@ public class Config {
 		return Integer.parseInt(confLines[6 + tileTypesCount()]);
 	}
 	
-	
 	private Config() {}
-	
-	public final static boolean DEBUG = true;
-	
-	private String[] confLines 		= null;
-	private int[][] tilesConf 		= null;
-	private static Config instance 	= null;
 }
