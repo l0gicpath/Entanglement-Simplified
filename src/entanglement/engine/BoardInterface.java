@@ -6,6 +6,6 @@ public interface BoardInterface {
 	public boolean isGameOver(int player);
 	public boolean fixTile();
 	public boolean switchTile(int tileType);
-	public boolean rotateTileClockWise();
-	public boolean rotateTileAntiClockWise();
+	public boolean rotateTileClockwise();
+	public boolean rotateTileAntiClockwise();
 }
