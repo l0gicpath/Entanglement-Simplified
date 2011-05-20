@@ -4,7 +4,7 @@ package entanglement.engine;
 public class Tile {
 	
 	private int[] tileConf = null;
-	
+	private Path[] pathes = null;
 
 	
 	public Tile(){}
