@@ -11,7 +11,7 @@ public class Tile {
 	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
-		pathes = new Path[Config.inst().openingsPerSide * 2];
+		pathes = new Path[Config.inst().openingsPerSide() * 2];
 	}
 	
 	public int[] getTileConf() {
