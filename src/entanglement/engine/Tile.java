@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Tile {
 	
 	private int[] tileConf = null;
-	private HashMap pathes = null;
+	private Path[] pathes = null;
 
 	
 	public Tile(){}
