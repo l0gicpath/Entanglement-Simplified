@@ -44,7 +44,7 @@ public class Tile {
 				tmpConf[i - tileConf.length - Config.inst().openingsPerSide()] = tileConf[i];
 		}
 		
-		this.tileConf = tmpConf;
+		tileConf = tmpConf;
 		updatePathes();
 	}
 	
@@ -57,7 +57,7 @@ public class Tile {
 				tmpConf[i + tileConf.length - Config.inst().openingsPerSide()] = tileConf[i];
 		}
 		
-		this.tileConf = tmpConf;
+		tileConf = tmpConf;
 		updatePathes();
 	}
 }

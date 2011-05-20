@@ -15,7 +15,7 @@ public class Path {
 	}
 	
 	public int getStart(){
-		return this.start;
+		return start;
 	}
 	
 	public void setend(int end){
@@ -23,7 +23,7 @@ public class Path {
 	}
 	
 	public int getend(){
-		return this.end;
+		return end;
 	}
 	
 	public boolean isOccupied(){
