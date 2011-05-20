@@ -26,12 +26,22 @@ public class Tile {
 		int[] tmpConf = new int[tileConf.length];
 		for (int i = 0;i < tileConf.length;i++)
 		{
-			if (i < tileConf.length - 2)
-				tmpConf[i + Config.inst().openingsPerSide] = tileConf[i];
+			if (i < tileConf.length - Config.inst().opeingsPerSide())
+				tmpConf[i + Config.inst().opeingsPerSide()] = tileConf[i];
 			else
 				tmpConf[i - tileConf.length - 2] = tileConf[i];
 		}
 		
 		tileConf = tmpConf;
+	}
+	
+	public void rotateAntiClockWise() {
+		int[] tmpConf = new int[tileConf.length];
+		for (int i = tileConf.length; i > 0; i--) {
+			if (i < tileConf.length - Config.inst().opeingsPerSide())
+				tmpConf[i - Config.inst().opeingsPerSide()] = tileConf[i];
+			else
+				tmpConf[i + tileConf.length - 2] = tileConf[i];
+		}
 	}
 }
