@@ -2,9 +2,13 @@ package entanglement.engine;
 
 public class Player {
 
-	int index;
+	private int index;
 	
 	public Player(int index){
 		this.index = index;
+	}
+	
+	public int ind(){
+		return this.index;
 	}
 }

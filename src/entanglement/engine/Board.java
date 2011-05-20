@@ -7,17 +7,23 @@ import entanglement.utils.Config;
 
 public class Board implements BoardInterface{
 	
-	Tile tiles[];
+	Tile[] tiles;
 	Tile currentTile;
-	int currentLocation;
+	Player[] players;
 	Player currentPlayer;
+	int currentLocation;
 	
 	public Board(Reader reader) {
 		Config.inst().load(reader);
 		
 		tiles = new Tile[Config.inst().boardWidth() * Config.inst().boardHeight()];
 		currentTile = new Tile(Config.inst().tileConf((new Random()).nextInt(Config.inst().tileTypesCount())));
-		currentPlayer = 0;
+		
+		players = new Player[Config.inst().playersCount()];
+		for (int i = 0;i < Config.inst().playersCount();i++)
+			players[i] = new Player(i);
+		currentPlayer = players[0];
+		
 		currentLocation = Config.inst().startLocation() - Config.inst().boardWidth();
 	}
 	
