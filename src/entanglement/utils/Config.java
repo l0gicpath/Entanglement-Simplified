@@ -15,7 +15,7 @@ public class Config {
 			System.out.println(message);
 	}
 	
-	public static Config getInstance() {
+	public static Config inst() {
 		if(instance == null)
 			instance = new Config();
 		return instance;

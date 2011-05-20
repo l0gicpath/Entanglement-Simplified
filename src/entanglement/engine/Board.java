@@ -9,11 +9,16 @@ public class Board implements BoardInterface{
 	
 	Tile tiles[];
 	Tile currentTile;
-	int currentPos;
+	int currentLocation;
 	Player currentPlayer;
 	
 	public Board(Reader reader) {
-		Config.getInstance().load(reader);
+		Config.inst().load(reader);
+		
+		tiles = new Tile[Config.inst().boardWidth() * Config.inst().boardHeight()];
+		currentTile = new Tile(Config.inst().tileConf((new Random()).nextInt(Config.inst().tileTypesCount())));
+		currentPlayer = 0;
+		currentLocation = Config.inst().startLocation() - Config.inst().boardWidth();
 	}
 	
 	@Override
@@ -43,7 +48,7 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean switchTile(int tileType) {
-		currentTile.setTileConf(Config.getInstance().tileConf(tileType));
+		currentTile.setTileConf(Config.inst().tileConf(tileType));
 		return true;
 	}
 }
