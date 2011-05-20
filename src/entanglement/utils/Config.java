@@ -59,7 +59,7 @@ public class Config {
 		return Integer.parseInt(confLines[0]);
 	}
 	
-	public int opeingsPerSide(){
+	public int openingsPerSide(){
 		return Integer.parseInt(confLines[1]);
 	}
 	

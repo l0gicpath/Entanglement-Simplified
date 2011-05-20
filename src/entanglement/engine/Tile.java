@@ -11,7 +11,7 @@ public class Tile {
 	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
-		pathes = new Path[Config.inst().opeingsPerSide() * 2];
+		pathes = new Path[Config.inst().openingsPerSide() * 2];
 	}
 	
 	public int[] getTileConf() {
@@ -26,24 +26,24 @@ public class Tile {
 		int[] tmpConf = new int[tileConf.length];
 		for (int i = 0;i < tileConf.length;i++)
 		{
-			if (i < tileConf.length - Config.inst().opeingsPerSide())
-				tmpConf[i + Config.inst().opeingsPerSide()] = tileConf[i];
+			if (i < tileConf.length - Config.inst().openingsPerSide())
+				tmpConf[i + Config.inst().openingsPerSide()] = tileConf[i];
 			else
-				tmpConf[i - tileConf.length - 2] = tileConf[i];
+				tmpConf[i - tileConf.length - Config.inst().openingsPerSide()] = tileConf[i];
 		}
 		
-		tileConf = tmpConf;
+		this.tileConf = tmpConf;
 	}
 	
-	public void rotateAntiClockWise() {
-		int[] tmpConf = new int[tileConf.length];
-		for (int i = tileConf.length -1; i >= 0; i--) {
-			if (i < tileConf.length - Config.inst().opeingsPerSide())
-				tmpConf[i - Config.inst().opeingsPerSide()] = tileConf[i];
-			else
-				tmpConf[i + tileConf.length + Config.inst().opeingsPerSide()] = tileConf[i];
-		}
-		
-		tileConf = tmpConf;
-	}
+    public void rotateAntiClockWise() {
+        int[] tmpConf = new int[tileConf.length];
+        for (int i = tileConf.length - 1;i >= 0;i--) {
+                if (i > Config.inst().openingsPerSide())
+                        tmpConf[i - Config.inst().openingsPerSide()] = tileConf[i];
+                else
+                        tmpConf[i + tileConf.length - Config.inst().openingsPerSide()] = tileConf[i];
+        }
+        
+        this.tileConf = tmpConf;
+    }
 }
