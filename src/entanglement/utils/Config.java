@@ -16,8 +16,8 @@ public class Config {
 		return instance;
 	}
 	
-	
-	public int load(Reader fileReader) {
+	// should validate the configuration file
+	public boolean load(Reader fileReader) {
 		String oContent = ""; 
 		try 
 		{
@@ -29,11 +29,11 @@ public class Config {
 		}
 		catch (IOException e) 
 		{
-			return 0;
+			return false;
 		}
 		confLines = oContent.substring(0, oContent.length()-2).split(":");
 		loadTilesConf();
-		return 1;
+		return true;
 	}
 	
 	private void loadTilesConf(){
@@ -52,7 +52,7 @@ public class Config {
 		return Integer.parseInt(confLines[0]);
 	}
 	
-	public int openingsPerSide(){
+	public int opeingsPerSide(){
 		return Integer.parseInt(confLines[1]);
 	}
 	
