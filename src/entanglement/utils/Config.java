@@ -4,6 +4,11 @@ import java.io.*;
 
 public class Config {
 	
+	public final static boolean DEBUG = true;
+	
+	private String[] confLines 		= null;
+	private int[][] tilesConf 		= null;
+	private static Config instance 	= null;
 	
 	public static void debug(String message) {
 		if(DEBUG)
@@ -79,11 +84,4 @@ public class Config {
 	public int playersCount(){
 		return Integer.parseInt(confLines[6 + tileTypesCount()]);
 	}
-	
-	
-	public final static boolean DEBUG = true;
-	
-	private String[] confLines 		= null;
-	private int[][] tilesConf 		= null;
-	private static Config instance 	= null;
 }

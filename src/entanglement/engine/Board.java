@@ -1,9 +1,9 @@
 package entanglement.engine;
 
 import java.io.Reader;
+import java.util.Random;
 
 import entanglement.utils.Config;
-
 
 public class Board implements BoardInterface{
 	
@@ -12,7 +12,7 @@ public class Board implements BoardInterface{
 	Player currentPlayer;
 	
 	public Board(Reader reader) {
-		if(Config.getInstance().load(reader));
+		Config.getInstance().load(reader);
 	}
 	
 	@Override
@@ -42,8 +42,7 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean switchTile(int tileType) {
-		return false;
+		currentTile.setTileConf(Config.getInstance().tileConf(tileType));
+		return true;
 	}
-	
-	
 }

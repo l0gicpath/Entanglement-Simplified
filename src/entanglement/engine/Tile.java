@@ -1,16 +1,17 @@
 package entanglement.engine;
 
+import entanglement.utils.Config;
 
 public class Tile {
 	
 	private int[] tileConf = null;
 	private Path[] pathes = null;
 
-	
 	public Tile(){}
 	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
+		pathes = new Path[Config.getInstance().openingsPerSide * 2];
 	}
 	
 	public int[] getTileConf() {
