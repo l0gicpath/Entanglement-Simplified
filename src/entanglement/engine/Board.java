@@ -9,6 +9,7 @@ public class Board implements BoardInterface{
 	
 	Tile tiles[];
 	Tile currentTile;
+	int currentPos;
 	Player currentPlayer;
 	
 	public Board(Reader reader) {
