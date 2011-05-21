@@ -34,7 +34,10 @@ public class Board implements BoardInterface{
 
 	@Override
 	public int getScore(int player) {
-		return 0;
+		if (player < 0)
+			return -1;
+		
+		return players[player].getScore();
 	}
 
 	@Override
