@@ -29,7 +29,16 @@ public class Board implements BoardInterface{
 	
 	@Override
 	public boolean fixTile() {
-		return false;
+		//check for correct path or return false
+		
+		//add new path to currentPlayer paths
+		
+		if (currentPlayer == players[3])
+			currentPlayer = players[0];
+		else
+			currentPlayer = players[currentPlayer.ind() + 1];
+		
+		return true;
 	}
 
 	@Override

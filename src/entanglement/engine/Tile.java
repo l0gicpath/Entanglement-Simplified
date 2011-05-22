@@ -5,13 +5,13 @@ import entanglement.utils.Config;
 public class Tile {
 	
 	private int[] tileConf = null;
-	private Path[] pathes = null;
+	private Path[] paths = null;
 
 	public Tile(){}
 	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
-		pathes = new Path[Config.inst().openingsPerSide() * 2];
+		paths = new Path[Config.inst().openingsPerSide() * 2];
 		updatePathes();
 	}
 	
@@ -29,7 +29,7 @@ public class Tile {
 		for (int i = 0;i < tileConf.length;i++)
 			if (tileConf[i] > i)
 			{
-				pathes[currPath] = new Path(i,tileConf[i]);
+				paths[currPath] = new Path(i,tileConf[i]);
 				currPath++;
 			}
 	}

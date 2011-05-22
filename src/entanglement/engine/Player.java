@@ -5,11 +5,11 @@ import java.util.*;
 public class Player {
 
 	private int index;
-	private LinkedList<Path> pathes;
+	private LinkedList<Path> paths;
 	
 	public Player(int index){
 		this.index = index;
-		pathes = new LinkedList<Path>();
+		paths = new LinkedList<Path>();
 	}
 	
 	public int ind(){
@@ -17,10 +17,10 @@ public class Player {
 	}
 	
 	public void addPath(Path newPath){
-		pathes.add(newPath);
+		paths.add(newPath);
 	}
 	
 	public int getScore(){
-		return pathes.size();
+		return paths.size();
 	}
 }
