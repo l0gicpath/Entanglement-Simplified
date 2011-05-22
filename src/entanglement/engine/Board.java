@@ -79,6 +79,9 @@ public class Board implements BoardInterface{
 			currentPlayer.addPath(new Path(choosenPath.getStart(),choosenPath.getEnd()));
 		else
 			currentPlayer.addPath(new Path(choosenPath.getEnd(),choosenPath.getStart()));
+		
+		//follow and add paths through next tiles if they exist
+		
 		updateGameOver(currentPlayer.ind());
 		
 		if (allGameOver() == false)

@@ -17,18 +17,26 @@ public class Helper {
 	}
 	
 	public static int getOppositeLocation(int location,int side){
+		int ret = 0;
+		
 		switch(side)
 		{
 		case 0:
-			return location - Config.inst().boardWidth();
+			ret = location - Config.inst().boardWidth();
 		case 1:
-			return location++;		
+			ret = location + 1;		
 		case 2:
-			return location + Config.inst().boardWidth();
+			ret = location + Config.inst().boardWidth();
 		case 3:
-			return location--;
+			ret = location - 1;
 		}
 		
-		return -1;
+		if ((ret%Config.inst().boardWidth() == Config.inst().boardWidth()) || (ret%Config.inst().boardWidth() == -1))
+			return -1;
+
+		if ((ret/Config.inst().boardHeight() == Config.inst().boardHeight()) || (ret/Config.inst().boardHeight() == -1))
+			return -1;
+		
+		return ret;
 	}
 }

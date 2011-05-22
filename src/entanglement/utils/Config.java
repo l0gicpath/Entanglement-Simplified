@@ -8,6 +8,7 @@ public class Config {
 	
 	private String[] confLines;
 	private int[][] tilesConf;
+	private int nOS,oPS,tTC,bW,bH,sL,pC;
 	private static Config instance;
 	
 	public static void debug(String message) {
@@ -36,8 +37,17 @@ public class Config {
 		{
 			return false;
 		}
+		
 		confLines = oContent.substring(0, oContent.length()-1).split(":");
 		loadTilesConf();
+		nOS = Integer.parseInt(confLines[0]);
+		oPS = Integer.parseInt(confLines[1]);
+		tTC = Integer.parseInt(confLines[2]);
+		bW = Integer.parseInt(confLines[3 + tileTypesCount()]);
+		bH = Integer.parseInt(confLines[4 + tileTypesCount()]);
+		sL = Integer.parseInt(confLines[5 + tileTypesCount()]);
+		pC = Integer.parseInt(confLines[6 + tileTypesCount()]);
+		
 		return true;
 	}
 	
@@ -55,15 +65,15 @@ public class Config {
 	}
 	
 	public int numberOfSides(){
-		return Integer.parseInt(confLines[0]);
+		return nOS;
 	}
 	
 	public int openingsPerSide(){
-		return Integer.parseInt(confLines[1]);
+		return oPS;
 	}
 	
 	public int tileTypesCount(){
-		return Integer.parseInt(confLines[2]);
+		return tTC;
 	}
 	
 	public int[] tileConf(int conf){
@@ -71,18 +81,18 @@ public class Config {
 	}
 	
 	public int boardWidth(){
-		return Integer.parseInt(confLines[3 + tileTypesCount()]);
+		return bW;
 	}
 	
 	public int boardHeight(){
-		return Integer.parseInt(confLines[4 + tileTypesCount()]);
+		return bH;
 	}
 	
 	public int startLocation(){
-		return Integer.parseInt(confLines[5 + tileTypesCount()]);
+		return sL;
 	}
 	
 	public int playersCount(){
-		return Integer.parseInt(confLines[6 + tileTypesCount()]);
+		return pC;
 	}
 }
