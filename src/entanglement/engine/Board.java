@@ -1,6 +1,7 @@
 package entanglement.engine;
 
 import java.io.Reader;
+import java.util.Iterator;
 import java.util.Random;
 
 import entanglement.utils.Config;
@@ -30,10 +31,40 @@ public class Board implements BoardInterface{
 	
 	public boolean allGameOver(){
 		for (int i = 0;i < Config.inst().playersCount();i++)
-			if (players[i].isGameOver() == false)
+			if (players[i].getGameOver() == false)
 				return false;
 		
 		return true;
+	}
+	
+	private void updateGameOver(int player){
+		Iterator<Path> i = players[player].getPaths().iterator();
+		int tmpLocation = 0;
+		
+		tmpLocation = Helper.getOppositeLocation(Config.inst().startLocation(),players[player].ind());
+		
+		while (i.hasNext())
+			tmpLocation = Helper.getOppositeLocation(tmpLocation,i.next().getEnd()/Config.inst().numberOfSides());
+		
+		if ((tmpLocation%Config.inst().boardWidth() == Config.inst().boardWidth()) || (tmpLocation%Config.inst().boardWidth() == -1))
+		{
+			players[player].setGameOver(true);
+			return;
+		}
+		if ((tmpLocation/Config.inst().boardHeight() == Config.inst().boardHeight()) || (tmpLocation/Config.inst().boardHeight() == -1))
+		{
+			players[player].setGameOver(true);
+			return;
+		}
+		
+		for (int p = 0;p < Config.inst().playersCount();p++)
+			if (p != players[player].ind())
+				if(players[player].lastPaths().getEnd() == players[p].lastPaths().getEnd())
+				{
+					players[player].setGameOver(true);
+					players[p].setGameOver(true);
+					return;
+				}
 	}
 	
 	@Override
@@ -48,6 +79,7 @@ public class Board implements BoardInterface{
 			currentPlayer.addPath(new Path(choosenPath.getStart(),choosenPath.getEnd()));
 		else
 			currentPlayer.addPath(new Path(choosenPath.getEnd(),choosenPath.getStart()));
+		updateGameOver(currentPlayer.ind());
 		
 		if (allGameOver() == false)
 		{
@@ -57,7 +89,7 @@ public class Board implements BoardInterface{
 					currentPlayer = players[0];
 				else
 					currentPlayer = players[currentPlayer.ind() + 1];
-			}while (currentPlayer.isGameOver());
+			}while (currentPlayer.getGameOver());
 			
 			tiles[currentLocation] = currentTile;
 			
@@ -79,7 +111,7 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean isGameOver(int player) {
-		return players[player].isGameOver();
+		return players[player].getGameOver();
 	}
 
 	@Override
