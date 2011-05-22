@@ -18,11 +18,11 @@ public class Path {
 		return start;
 	}
 	
-	public void setend(int end){
+	public void setEnd(int end){
 		this.end = end;
 	}
 	
-	public int getend(){
+	public int getEnd(){
 		return end;
 	}
 	

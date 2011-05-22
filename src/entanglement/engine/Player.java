@@ -23,4 +23,8 @@ public class Player {
 	public int getScore(){
 		return paths.size();
 	}
+	
+	public Path lastPaths(){
+		return paths.getLast();
+	}
 }

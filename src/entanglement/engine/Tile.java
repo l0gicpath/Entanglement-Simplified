@@ -6,8 +6,6 @@ public class Tile {
 	
 	private int[] tileConf = null;
 	private Path[] paths = null;
-
-	public Tile(){}
 	
 	public Tile(int[] tileConf){
 		this.tileConf = tileConf;
@@ -59,5 +57,21 @@ public class Tile {
 		
 		tileConf = tmpConf;
 		updatePathes();
+	}
+	
+	public boolean hasOpeningAt(int opening){
+		for (int i = 0;i < paths.length;i++)
+			if (paths[i].getStart() == opening || paths[i].getEnd() == opening)
+				return true;
+		
+		return false;
+	}
+	
+	public Path getPathFromOpening(int opening){
+		for (int i = 0;i < paths.length;i++)
+			if (paths[i].getStart() == opening || paths[i].getEnd() == opening)
+				return paths[i];
+		
+		return (new Path(0,0));
 	}
 }

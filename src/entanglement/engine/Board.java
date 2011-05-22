@@ -4,6 +4,7 @@ import java.io.Reader;
 import java.util.Random;
 
 import entanglement.utils.Config;
+import entanglement.utils.Helper;
 
 public class Board implements BoardInterface{
 	
@@ -29,14 +30,25 @@ public class Board implements BoardInterface{
 	
 	@Override
 	public boolean fixTile() {
-		//check for correct path or return false
+		int oppositeOpening = Helper.getOppositeOpening(currentPlayer.lastPaths().getEnd());
 		
-		//add new path to currentPlayer paths
+		if (currentTile.hasOpeningAt(oppositeOpening) == false)
+			return false;
+		
+		Path choosenPath = currentTile.getPathFromOpening(oppositeOpening);
+		if (choosenPath.getStart() == oppositeOpening)
+			currentPlayer.addPath(new Path(choosenPath.getStart(),choosenPath.getEnd()));
+		else
+			currentPlayer.addPath(new Path(choosenPath.getEnd(),choosenPath.getStart()));
 		
 		if (currentPlayer == players[3])
 			currentPlayer = players[0];
 		else
 			currentPlayer = players[currentPlayer.ind() + 1];
+		
+		tiles[currentLocation] = currentTile;
+		
+		//update currentLocation
 		
 		return true;
 	}
