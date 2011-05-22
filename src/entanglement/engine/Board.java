@@ -28,6 +28,14 @@ public class Board implements BoardInterface{
 		currentLocation = Config.inst().startLocation() - Config.inst().boardWidth();
 	}
 	
+	public boolean allGameOver(){
+		for (int i = 0;i < Config.inst().playersCount();i++)
+			if (players[i].isGameOver() == false)
+				return false;
+		
+		return true;
+	}
+	
 	@Override
 	public boolean fixTile() {
 		int oppositeOpening = Helper.getOppositeOpening(currentPlayer.lastPaths().getEnd());
@@ -41,18 +49,26 @@ public class Board implements BoardInterface{
 		else
 			currentPlayer.addPath(new Path(choosenPath.getEnd(),choosenPath.getStart()));
 		
-		if (currentPlayer == players[3])
-			currentPlayer = players[0];
-		else
-			currentPlayer = players[currentPlayer.ind() + 1];
-		
-		tiles[currentLocation] = currentTile;
-		
-		//update currentLocation
+		if (allGameOver() == false)
+		{
+			do
+			{
+				if (currentPlayer == players[Config.inst().playersCount()-1])
+					currentPlayer = players[0];
+				else
+					currentPlayer = players[currentPlayer.ind() + 1];
+			}while (currentPlayer.isGameOver());
+			
+			tiles[currentLocation] = currentTile;
+			
+			currentLocation = Helper.getOppositeLocation(currentLocation, currentPlayer.lastPaths().getEnd()/Config.inst().numberOfSides());
+			
+			currentTile = new Tile(Config.inst().tileConf((new Random()).nextInt(Config.inst().tileTypesCount())));
+		}
 		
 		return true;
 	}
-
+	
 	@Override
 	public int getScore(int player) {
 		if (player < 0)
@@ -63,7 +79,7 @@ public class Board implements BoardInterface{
 
 	@Override
 	public boolean isGameOver(int player) {
-		return false;
+		return players[player].isGameOver();
 	}
 
 	@Override

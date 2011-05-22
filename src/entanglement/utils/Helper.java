@@ -15,4 +15,20 @@ public class Helper {
 			return Config.inst().openingsPerSide()*oppositeSide + 1;
 			
 	}
+	
+	public static int getOppositeLocation(int location,int side){
+		switch(side)
+		{
+		case 0:
+			return location - Config.inst().boardWidth();
+		case 1:
+			return location++;		
+		case 2:
+			return location + Config.inst().boardWidth();
+		case 3:
+			return location--;
+		}
+		
+		return -1;
+	}
 }
